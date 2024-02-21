@@ -71,6 +71,7 @@ const StyledTable = styled.table`
     box-sizing: border-box;
   }
 
+
   th {
     &:nth-child(1) {
       width: 20%;
@@ -95,6 +96,21 @@ const StyledTable = styled.table`
 
   .align-right {
     text-align: right;
+  }
+  .remainigEmail
+  {
+    background-color: blue;
+    height: 12px;
+    width:12px;
+    border-radius: 50%;
+    display:inline-block;
+    padding:5px;
+    color:#fff;
+    font-size:small;
+  }
+  #RecepientDisplayData
+  {
+
   }
 
   /* Add a class to control the display of recipients based on td width */
