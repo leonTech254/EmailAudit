@@ -1,24 +1,26 @@
-import { useMemo, type PropsWithChildren } from 'react'
-import styled from 'styled-components'
-import { groupBy } from 'lodash-es'
-import type { Email } from '../types/Email'
-import RecipientsDisplay from './RecipientsDisplay'
-import DateDisplay from './DateDisplay'
-import TimeDisplay from './TimeDisplay'
+import React, { useMemo } from 'react';
+import styled from 'styled-components';
+import { groupBy } from 'lodash-es';
+import type { Email } from '../types/Email';
+import RecipientsDisplay from './RecipientsDisplay';
+import DateDisplay from './DateDisplay';
+import TimeDisplay from './TimeDisplay';
 
-type AuditTableProps = PropsWithChildren<{ emails: Email[] }>
+type AuditTableProps = {
+  emails: Email[];
+};
 
 function AuditTable({ emails, ...rest }: AuditTableProps) {
   const emailsByDate = useMemo(
     () =>
       groupBy<Email>(emails, ({ datetime }) =>
-        new Date(datetime).toLocaleDateString(),
+        new Date(datetime).toLocaleDateString()
       ),
-    [emails],
-  )
+    [emails]
+  );
 
   return (
-    <table {...rest}>
+    <StyledTable {...rest}>
       <thead>
         <tr>
           <th>Sender</th>
@@ -33,7 +35,7 @@ function AuditTable({ emails, ...rest }: AuditTableProps) {
           {emailGroup.map(({ id, from, to: recipients, subject, datetime }) => (
             <tr key={id}>
               <td>{from}</td>
-              <td>
+              <td id='RecepientDisplayData'>
                 <RecipientsDisplay recipients={recipients} />
               </td>
               <td>{subject}</td>
@@ -47,11 +49,11 @@ function AuditTable({ emails, ...rest }: AuditTableProps) {
           ))}
         </tbody>
       ))}
-    </table>
-  )
+    </StyledTable>
+  );
 }
 
-export default styled(AuditTable)`
+const StyledTable = styled.table`
   table-layout: fixed;
   border: var(--border-style);
   border-spacing: 0;
@@ -94,4 +96,13 @@ export default styled(AuditTable)`
   .align-right {
     text-align: right;
   }
-`
+
+  /* Add a class to control the display of recipients based on td width */
+  .truncated-recipients {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+`;
+
+export default AuditTable;
