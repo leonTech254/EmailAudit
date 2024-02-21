@@ -1,0 +1,20 @@
+# Dependency directories
+node_modules/
+# build output
+dist/
+# cache and logs
+.cache/
+logs/
+# local environment files
+.env.local
+
+# Dependency directories
+node_modules/
+# build output
+build/
+# environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
