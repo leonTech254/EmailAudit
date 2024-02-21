@@ -69,6 +69,7 @@ const StyledTable = styled.table`
     white-space: nowrap;
     height: 34px;
     box-sizing: border-box;
+    position: relative;
   }
 
 
@@ -97,19 +98,28 @@ const StyledTable = styled.table`
   .align-right {
     text-align: right;
   }
+  
   .remainigEmail
   {
     background-color: blue;
     height: 12px;
     width:12px;
     border-radius: 50%;
-    display:inline-block;
+    display:inline-flex;
+    align-items: center;
+    justify-content: center;
     padding:5px;
     color:#fff;
     font-size:small;
+    font-weight:bold;;
+    position:absolute;
+    right:0;
+    text-align:center;
+    
   }
   #RecepientDisplayData
   {
+    
 
   }
 
